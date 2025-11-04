@@ -1,0 +1,83 @@
+---
+import Button from "@/components/ui/Button.astro";
+import { Sun, Moon } from "@lucide/astro";
+---
+
+<section id="hero-section" class="flex lg:flex-row flex-col gap-3 lg:gap-5 mt-5 w-full fade-up">
+  <div class="w-full lg:w-[706px] h-auto lg:h-[515px] bento">
+    <div class="p-4 lg:p-8">
+      <div
+        class="bg-orange mb-2 md:mb-0 rounded-full w-20 lg:w-28 h-20 lg:h-28"
+      >
+      </div>
+      <p class="text-text lg:text-[54px] text-3xl md:text-4xl lg:text-5xl leading-tight lg:leading-20">
+        <strong class="font-semibold">Adrian de la Fuente</strong> is a <strong
+          class="font-normal text-orange">fullstack developer</strong
+        > passionate about technology.
+      </p>
+    </div>
+  </div>
+  <div
+    class="flex-1 gap-3 lg:gap-5 grid grid-cols-2 grid-rows-2 lg:grid-rows-3"
+  >
+    <div
+      class="flex justify-center items-center col-span-1 font-bold text-orange lg:text-[48px] text-3xl text-center leading-tight lg:leading-[50px] cursor-pointer bento"
+    >
+      GET <br />CV
+    </div>
+    <div
+      id="theme-toggle-tile"
+      class="flex flex-col gap-5 col-span-1 p-5 cursor-pointer bento"
+    >
+      <div id="theme-icon" class="relative w-[42px] h-[42px]">
+        <Sun id="sun-icon" class="absolute inset-0 theme-icon-sun" size={42} />
+        <Moon
+          id="moon-icon"
+          class="absolute inset-0 theme-icon-moon"
+          size={42}
+        />
+      </div>
+      <p class="text-md text-text lg:text-lg">
+        <span id="theme-text-dark" class="theme-text-dark"
+          >Press this tile for the light mode.</span
+        >
+        <span id="theme-text-light" class="theme-text-light"
+          >Press this tile for the dark mode.</span
+        >
+      </p>
+    </div>
+    <div
+      class="flex flex-col justify-center items-center gap-6 lg:gap-10 col-span-2 row-span-1 lg:row-span-2 p-4 bento"
+    >
+      <p
+        class="font-family-montserrat font-bold text-text text-3xl md:text-4xl lg:text-5xl text-center"
+      >
+        Have a project in mind ?
+      </p>
+      <Button
+        text="adelafuentegarceso@gmail.com"
+        href="mailto:adelafuentegarceso@gmail.com?subject=Project Inquiry&body=Hi! I have a project in mind and would like to discuss it with you."
+        class="bg-orange rounded-[300px] w-[250px] md:w-[300px] lg:w-[400px] h-14 md:h-16 lg:h-24 font-bold text-white md:text-md text-sm lg:text-xl"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("hero-section");
+    if (!nav) return;
+    void nav.offsetHeight;
+    nav.classList.add("is-animated");
+  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleTile = document.getElementById("theme-toggle-tile");
+
+    toggleTile?.addEventListener("click", () => {
+      // Usar el themeManager global para cambiar el tema
+      // @ts-ignore - themeManager se define en Layout.astro
+      window.themeManager?.toggle();
+      // No necesitamos actualizar UI manualmente, CSS lo hace automáticamente
+    });
+  });
+</script>

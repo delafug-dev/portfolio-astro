@@ -1,0 +1,41 @@
+---
+export interface Props {
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  class?: string;
+  text: string;
+  href?: string;
+  target?: string;
+  onClick?: string;
+}
+
+const {
+  text,
+  type = "button",
+  disabled = false,
+  class: className = "",
+  href,
+  target,
+  onClick,
+  ...rest
+} = Astro.props;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      target={target}
+      class={`flex items-center justify-center text-center ${className}`}
+      {...rest}
+    >
+      {text}
+      <slot />
+    </a>
+  ) : (
+    <button type={type} disabled={disabled} class={className} {...rest}>
+      {text}
+      <slot />
+    </button>
+  )
+}

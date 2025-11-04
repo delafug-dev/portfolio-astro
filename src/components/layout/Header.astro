@@ -1,0 +1,114 @@
+---
+import { Menu } from "@lucide/astro";
+---
+
+<div
+  class="hidden top-0 left-0 z-50 fixed bg-background-bento w-screen h-screen"
+  id="overlay"
+>
+  <button class="top-10 right-2 absolute" id="toggle_button_menu">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="68"
+      height="68"
+      viewBox="0 0 256 256"
+      ><path
+        fill="#ffffff"
+        d="M208 36H48a12 12 0 0 0-12 12v160a12 12 0 0 0 12 12h160a12 12 0 0 0 12-12V48a12 12 0 0 0-12-12Zm4 172a4 4 0 0 1-4 4H48a4 4 0 0 1-4-4V48a4 4 0 0 1 4-4h160a4 4 0 0 1 4 4ZM162.83 98.83L133.66 128l29.17 29.17a4 4 0 0 1-5.66 5.66L128 133.66l-29.17 29.17a4 4 0 0 1-5.66-5.66L122.34 128L93.17 98.83a4 4 0 0 1 5.66-5.66L128 122.34l29.17-29.17a4 4 0 1 1 5.66 5.66Z"
+      ></path></svg
+    >
+  </button>
+  <div>
+    <ul class="bottom-40 absolute flex flex-col gap-6">
+      <li>
+        <a
+          href=""
+          class="ml-2 font-bold text-white md:text-6xl text-7xl tracking-[-0.01rem]"
+          >Home.</a
+        >
+      </li>
+      <li>
+        <a
+          href=""
+          class="ml-2 font-bold text-gray-400 hover:text-white md:text-6xl text-7xl tracking-[-0.01rem] transition-colors duration-300"
+          >Projects.</a
+        >
+      </li>
+      <li>
+        <a
+          href=""
+          class="ml-2 font-bold text-gray-400 hover:text-white md:text-6xl text-7xl tracking-[-0.01rem] transition-colors duration-300"
+          >Contact.</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+
+<header>
+  <nav
+    id="header-nav"
+    class="flex flex-row justify-between items-center xl:mx-auto mt-6 max-w-full font-semibold fade-up bentoHeaderFooter"
+  >
+    <span class="m-0 py-5 pl-[42px] font-medium text-white tracking-[-0.01rem]"
+      >devlafug.</span
+    >
+    <ul
+      class="hidden box-border lg:flex flex-row justify-between items-center gap-14 m-0 pr-[52px]"
+    >
+      <li>
+        <a href="" class="font-medium text-white tracking-[-0.01rem]">home.</a>
+      </li>
+      <li>
+        <a
+          href=""
+          class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300"
+          >projects.</a
+        >
+      </li>
+      <li>
+        <a
+          href=""
+          class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300"
+          >contact.</a
+        >
+      </li>
+    </ul>
+    <button class="lg:hidden m-0 pr-[42px]" id="toggle_button">
+      <Menu size={32} />
+    </button>
+  </nav>
+</header>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("header-nav");
+    if (!nav) return;
+    void nav.offsetHeight;
+    nav.classList.add("is-animated");
+  });
+  const toggleButton = document.getElementById("toggle_button");
+  const toggleButtonMenu = document.getElementById("toggle_button_menu");
+  const overlay = document.getElementById("overlay");
+  if (toggleButton && overlay) {
+    toggleButton.addEventListener("click", () => {
+      if (overlay.style.display === "flex") {
+        overlay.style.display = "none";
+      } else {
+        overlay.style.display = "flex";
+        overlay.style.flexDirection = "column";
+      }
+    });
+  }
+  if (toggleButtonMenu && overlay) {
+    toggleButtonMenu.addEventListener("click", () => {
+      if (overlay.style.display === "flex") {
+        overlay.style.display = "none";
+      } else {
+        overlay.style.display = "flex";
+        overlay.style.flexDirection = "column";
+        overlay.style.alignItems = "center";
+      }
+    });
+  }
+</script>
