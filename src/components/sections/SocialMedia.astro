@@ -1,43 +1,45 @@
 ---
-import { Github, Linkedin, Twitter, Mail, Globe, GithubIcon } from "@lucide/astro";
+import { Twitter, Mail, Globe } from "@lucide/astro";
 ---
 
-<section class="flex flex-row gap-5 mt-5 w-full font-family-inter">
-  <div class="flex justify-center items-center bg-[var(--color-background-bento)] px-10 py-8 rounded-[122px]">
-    <div class="flex flex-row items-center gap-2">
-      <Linkedin size={24} />
-      <span class="text-2xl">LinkedIn</span>
+<section id="social-media-section" class="flex flex-wrap gap-3 lg:gap-4 mt-5 w-full font-inter">
+  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+    <div class="flex flex-row items-center gap-2">      
+      <img src="icons/linkedin.svg" alt="LinkedIn Icon" class="w-6 h-6" />
+      <span class="text-white text-xl">linkedin</span>
     </div>
   </div>
-  <div class="flex justify-center items-center bg-[var(--color-background-bento)] rounded-[122px]">
-    <div class="flex flex-row items-center gap-2">
-      <Twitter size={24} />
-      <span class="text-2xl">Twitter</span>
+  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+    <div class="flex flex-row items-center gap-2">      
+      <img src="icons/github.svg" alt="GitHub Icon" class="w-6 h-6" />
+      <span class="text-white text-xl">github</span>
     </div>
   </div>
-  <div class="flex justify-center items-center bg-[var(--color-background-bento)] rounded-[122px]">
-    <div class="flex flex-row items-center gap-2">
-      <GithubIcon size={24} />
-      <span class="text-2xl">GitHub</span>
+  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+    <div class="flex flex-row items-center gap-2">      
+      <Twitter class="w-6 h-6" />
+      <span class="text-white text-xl">twitter</span>
     </div>
   </div>
-  <div class="flex justify-center items-center bg-[var(--color-background-bento)] rounded-[122px]">
-    <div class="flex flex-row items-center gap-2">
-      <Mail size={24} />
-      <span class="text-2xl">Email</span>
+  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+    <div class="flex flex-row items-center gap-2">      
+      <Mail class="w-6 h-6" />
+      <span class="text-white text-xl">email</span>
     </div>
   </div>
-  <div class="flex justify-center items-center bg-[var(--color-background-bento)] rounded-[122px]">
-    <div class="flex flex-row items-center gap-2">
-      <Linkedin size={24} />
-      <span class="text-2xl">LinkedIn</span>
-    </div>
+  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+    <div class="flex flex-row items-center gap-2">      
+      <Globe class="w-6 h-6" />
+      <span class="text-white text-xl">website</span>
+    </div>  
   </div>
-  <div class="flex justify-center items-center bg-[var(--color-background-bento)] rounded-[122px]">
-    <div class="flex flex-row items-center gap-2">
-      <Linkedin size={24} />
-      <span class="text-2xl">LinkedIn</span>
-    </div>
-  </div>
-
 </section>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+    const nav = document.getElementById("social-media-section");
+    if (!nav) return;
+    void nav.offsetHeight;
+    nav.classList.add("is-animated");
+  });
+</script>

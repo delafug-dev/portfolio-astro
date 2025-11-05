@@ -1,5 +1,33 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
 @theme {
   /* Global */
   --color-orange: #c85400;
@@ -18,6 +46,13 @@
   /* Fonts */
   --font-family-inter: "Inter", sans-serif;
   --font-family-montserrat: "Montserrat", sans-serif;
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1240px;
 }
 
 /* Reset y ajustes base */
@@ -96,6 +131,17 @@ body.light .custom-cursor {
 }
 
 .bento.light {
+  background-color: var(--color-light-background-bento);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bentoSocialMedia {
+  background-color: var(--color-background-bento);
+  border-radius: 112px;
+  transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bentoSocialMedia.light {
   background-color: var(--color-light-background-bento);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

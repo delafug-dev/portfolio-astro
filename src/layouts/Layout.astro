@@ -11,11 +11,11 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>Astro Basics</title>
   </head>
-  <body class="dark:bg-background bg-light-background">
+  <body class="bg-light-background dark:bg-background">
     <!-- Cursor personalizado -->
     <div class="custom-cursor" id="custom-cursor"></div>
 
-    <main class="xl:mx-auto lg:mx-6 mx-4 max-w-[1240px]">
+    <main class="mx-4 2xl:mx-auto xl:mx-6 max-w-[1240px]">
       <slot />
     </main>
 
@@ -96,6 +96,15 @@ import "../styles/global.css";
         applyThemeToAll: function (isLight) {
           // Aplicar a todos los bentos
           document.querySelectorAll(".bento").forEach((el) => {
+            if (isLight) {
+              el.classList.add("light");
+            } else {
+              el.classList.remove("light");
+            }
+          });
+
+          // Aplicar a secciones específicas
+          document.querySelectorAll(".bentoSocialMedia").forEach((el) => {
             if (isLight) {
               el.classList.add("light");
             } else {
