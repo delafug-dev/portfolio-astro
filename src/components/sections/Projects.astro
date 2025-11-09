@@ -1,0 +1,113 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import HTMLIcon from "../ui/icons/HTMLIcon.astro";
+import CSSIcon from "../ui/icons/CSSIcon.astro";
+import TailwindIcon from "../ui/icons/TailwindIcon.astro";
+import JavascriptIcon from "../ui/icons/JavascriptIcon.astro";
+import TypeScriptIcon from "../ui/icons/TypeScriptIcon.astro";
+import ReactIcon from "../ui/icons/ReactIcon.astro";
+import NextJSIcon from "../ui/icons/NextJSIcon.astro";
+import NodeJSIcon from "../ui/icons/NodeJSIcon.astro";
+
+// Obtener proyectos personales ordenados
+const projects = (await getCollection('projects'))
+  .sort((a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) => a.data.order - b.data.order);
+
+// Mapeo de nombres de tecnologías a componentes de iconos
+const techIcons: Record<string, any> = {
+  "HTML": HTMLIcon,
+  "CSS": CSSIcon,
+  "Tailwind CSS": TailwindIcon,
+  "JavaScript": JavascriptIcon,
+  "TypeScript": TypeScriptIcon,
+  "React": ReactIcon,
+  "Next.js": NextJSIcon,
+  "Astro": ReactIcon, // Temporalmente usa React icon
+  "Node.js": NodeJSIcon,
+};
+---
+
+<section id="projects-section" class="mt-5 w-full fade-up">
+  <!-- Título de la sección -->
+  <div class="mb-5 p-6 xl:p-8 h-auto xl:h-[125px] bento">
+    <h2 class="font-bold text-orange xl:text-[48px] text-4xl">
+      Personal Projects
+    </h2>
+  </div>
+
+  <!-- Grid de proyectos -->
+  <div class="flex flex-col gap-5">
+    {projects.map((project: CollectionEntry<'projects'>) => (
+      <div class="flex xl:flex-row flex-col gap-5 h-auto xl:h-[422px] overflow-hidden bento">
+        <!-- Columna izquierda: Info e imagen -->
+        <div class="flex-1 p-6 xl:p-8">
+          <h3 class="mb-2 font-bold text-white xl:text-[32px] text-2xl md:text-3xl">
+            {project.data.title}
+          </h3>
+          <p class="mb-8 text-gray-400 xl:text-[20px] text-lg md:text-xl">
+            {project.data.description}
+          </p>
+          
+          <!-- Imagen del proyecto -->
+          <img
+            src={project.data.image}
+            alt={project.data.title}
+            class="shadow-[0px_3px_3px_0px_inset_rgba(0,0,0,0.25)] rounded-[20px] w-full h-[200px] xl:h-[267px] object-cover"
+          />
+        </div>
+
+        <!-- Columna derecha: Tecnologías -->
+        <div class="flex flex-col gap-6 bg-background-bento xl:bg-transparent p-6 xl:p-8 xl:w-[253px]">
+          <h4 class="font-bold text-orange xl:text-[20px] text-xl">
+            Technologies
+          </h4>
+          <div class="gap-6 grid grid-cols-2">
+            {project.data.technologies.slice(0, 6).map((tech: string) => {
+              const IconComponent = techIcons[tech];
+              return IconComponent ? (
+                <div class="flex justify-center items-center w-[60px] h-[60px]">
+                  <IconComponent className="w-[60px] h-[60px]" />
+                </div>
+              ) : (
+                <div class="flex justify-center items-center bg-gray-800 rounded-lg w-[60px] h-[60px]">
+                  <span class="text-white text-xs">{tech.slice(0, 2)}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Botón "Show More" -->
+  {projects.length > 3 && (
+    <div class="flex justify-center mt-8">
+      <button 
+        id="show-more-projects"
+        class="bg-orange hover:bg-orange/80 px-12 py-6 rounded-[300px] font-bold text-white xl:text-[20px] transition-colors"
+      >
+        show more
+      </button>
+    </div>
+  )}
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Animación fade-up al cargar
+    const projectsSection = document.getElementById('projects-section');
+    if (projectsSection) {
+      void projectsSection.offsetHeight;
+      projectsSection.classList.add('is-animated');
+    }
+
+    // Lógica del botón "show more" (si se necesita paginación)
+    const showMoreBtn = document.getElementById('show-more-projects');
+    showMoreBtn?.addEventListener('click', () => {
+      // Implementar lógica de paginación aquí
+      console.log('Mostrar más proyectos');
+    });
+  });
+</script>

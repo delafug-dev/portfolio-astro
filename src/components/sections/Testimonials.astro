@@ -1,0 +1,116 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+// Obtener solo works que tengan testimonial
+const worksWithTestimonials = (await getCollection('works'))
+  .filter((work: CollectionEntry<'works'>) => work.data.testimonial)
+  .sort((a: CollectionEntry<'works'>, b: CollectionEntry<'works'>) => a.data.order - b.data.order);
+---
+
+<section id="testimonials-section" class="mt-5 w-full fade-up">
+  <!-- Título de la sección -->
+  <div class="mb-5 p-6 xl:p-8 h-auto xl:h-[125px] bento">
+    <h2 class="font-bold text-orange xl:text-[48px] text-4xl">
+      Testimonials
+    </h2>
+  </div>
+
+  <!-- Contenedor del carrusel de testimoniales -->
+  <div class="relative flex items-center p-8 xl:p-12 h-auto xl:h-[251px] bento">
+    <!-- Testimoniales (solo uno visible a la vez) -->
+    {worksWithTestimonials.map((work: CollectionEntry<'works'>, index: number) => (
+      <div 
+        class="w-full transition-opacity duration-500 testimonial-item"
+        data-testimonial-index={index}
+        style={index === 0 ? 'opacity: 1;' : 'opacity: 0; position: absolute; inset: 0; pointer-events: none;'}
+      >
+        <blockquote class="mb-8">
+          <p class="mb-0 text-white xl:text-[32px] text-xl md:text-2xl leading-relaxed">
+            "{work.data.testimonial?.quote}"
+          </p>
+        </blockquote>
+        
+        <div class="flex items-center gap-4">
+          {work.data.testimonial?.avatar && (
+            <img 
+              src={work.data.testimonial.avatar} 
+              alt={work.data.testimonial.author}
+              class="rounded-full w-12 xl:w-14 h-12 xl:h-14 object-cover"
+            />
+          )}
+          <p class="m-0 text-gray-400 xl:text-[32px] text-lg md:text-xl">
+            {work.data.testimonial?.author}
+          </p>
+        </div>
+      </div>
+    ))}
+
+    <!-- Navegación -->
+    {worksWithTestimonials.length > 1 && (
+      <div class="right-8 bottom-8 absolute flex gap-4">
+        <button 
+          id="prev-testimonial" 
+          class="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700 rounded-full w-12 xl:w-14 h-12 xl:h-14 text-white transition-colors"
+          aria-label="Testimonial anterior"
+        >
+          ←
+        </button>
+        <button 
+          id="next-testimonial" 
+          class="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700 rounded-full w-12 xl:w-14 h-12 xl:h-14 text-white transition-colors"
+          aria-label="Siguiente testimonial"
+        >
+          →
+        </button>
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial-item');
+    const totalTestimonials = testimonials.length;
+
+    /**
+     * Muestra el testimonial especificado
+     */
+    function showTestimonial(index: number) {
+      testimonials.forEach((t, i) => {
+        const testimonialElement = t as HTMLElement;
+        if (i === index) {
+          testimonialElement.style.opacity = '1';
+          testimonialElement.style.position = 'relative';
+          testimonialElement.style.pointerEvents = 'auto';
+        } else {
+          testimonialElement.style.opacity = '0';
+          testimonialElement.style.position = 'absolute';
+          testimonialElement.style.inset = '0';
+          testimonialElement.style.pointerEvents = 'none';
+        }
+      });
+      currentTestimonial = index;
+    }
+
+    // Navegación - Anterior
+    document.getElementById('prev-testimonial')?.addEventListener('click', () => {
+      const newIndex = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+      showTestimonial(newIndex);
+    });
+
+    // Navegación - Siguiente
+    document.getElementById('next-testimonial')?.addEventListener('click', () => {
+      const newIndex = (currentTestimonial + 1) % totalTestimonials;
+      showTestimonial(newIndex);
+    });
+
+    // Animación fade-up al cargar
+    const testimonialsSection = document.getElementById('testimonials-section');
+    if (testimonialsSection) {
+      void testimonialsSection.offsetHeight;
+      testimonialsSection.classList.add('is-animated');
+    }
+  });
+</script>

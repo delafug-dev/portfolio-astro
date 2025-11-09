@@ -1,0 +1,180 @@
+---
+import HTMLIcon from "../ui/icons/HTMLIcon.astro";
+import CSSIcon from "../ui/icons/CSSIcon.astro";
+import TailwindIcon from "../ui/icons/TailwindIcon.astro";
+import JavascriptIcon from "../ui/icons/JavascriptIcon.astro";
+import TypeScriptIcon from "../ui/icons/TypeScriptIcon.astro";
+import ReactIcon from "../ui/icons/ReactIcon.astro";
+import NextJSIcon from "../ui/icons/NextJSIcon.astro";
+import NodeJSIcon from "../ui/icons/NodeJSIcon.astro";
+import JavaIcon from "../ui/icons/JavaIcon.astro";
+import SpringBootIcon from "../ui/icons/SpringBootIcon.astro";
+import MySQLIcon from "../ui/icons/MySQLIcon.astro";
+import MongoDBIcon from "../ui/icons/MongoDBIcon.astro";
+import { getWeatherIcon, defaultWeatherData } from "../../utils/weatherIcons";
+
+// Fetch del clima en el servidor
+const WEATHER_API_KEY = import.meta.env.WEATHER_API_KEY;
+let weatherData = defaultWeatherData;
+let weatherIcon = getWeatherIcon(defaultWeatherData.condition.code, true);
+
+// ⚠️ COMENTAR ESTO DURANTE DESARROLLO PARA NO GASTAR PETICIONES
+/*
+try {
+  const response = await fetch(
+    `https://api.weatherapi.com/v1/current.json?key=${WEATHER_API_KEY}&q=Seville&aqi=no&lang=es`
+  );
+  
+  if (response.ok) {
+    const data = await response.json();
+    weatherData = {
+      temp_c: data.current.temp_c,
+      condition: data.current.condition,
+      is_day: data.current.is_day
+    };
+    weatherIcon = getWeatherIcon(data.current.condition.code, data.current.is_day === 1);
+  } else {
+    console.warn('WeatherAPI returned non-OK status:', response.status);
+  }
+} catch (error) {
+  console.error('Error fetching weather data:', error);
+  // Usamos datos por defecto
+}
+*/
+---
+
+<section id="technologies-section" class="flex xl:flex-row flex-col gap-3 xl:gap-5 mt-5 w-full fade-up">
+  <!-- COLUMNA IZQUIERDA: Clima + Frase Tolkien -->
+  <div class="flex flex-col gap-3 xl:gap-5 w-full xl:w-[515px]">
+    <!-- Clima/Location -->
+    <div class="p-6 xl:p-8 h-auto xl:h-[318px] bento">
+      <p class="mb-2 lg:mb-3 text-white xl:text-[42px] text-3xl md:text-4xl">
+        Based in <strong class="text-orange">Seville</strong>,<br />
+        Spain
+      </p>
+      <p class="mb-3 font-montserrat font-medium text-white/50 xl:text-[18px]">GMT +1</p>
+      
+      <div class="flex justify-between items-center">
+        <div>
+          <p class="mb-2 font-bold text-orange xl:text-[40px] text-4xl">{weatherData.temp_c}º</p>
+          <p class="font-semibold text-white xl:text-[24px] text-2xl">{weatherIcon.name}</p>
+          <p id="current-time" class="font-montserrat font-normal text-white xl:text-[20px] text-xl tracking-wide">--:--</p>
+        </div>
+        <!-- Icono del clima desde Meteocons -->
+        <div class="flex justify-center items-center w-32 xl:w-[184px] h-32 xl:h-[129px]">
+          <img 
+            src={`https://basmilius.github.io/weather-icons/production/line/all/${weatherIcon.icon}.svg`}
+            alt={weatherIcon.name}
+            class="w-full h-full weather-icon"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Frase de Tolkien -->
+    <div class="flex flex-col justify-center p-6 xl:p-8 h-auto xl:h-[168px] bento">
+      <p class="mb-4 text-white xl:text-[20px] text-xl leading-relaxed">
+        "All we have to decide is what to do with the time that is given to us."
+      </p>
+      <ul class="list-none">
+        <li class="font-semibold text-white xl:text-[20px] text-xl">
+          • J. R.R. Tolkien
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- COLUMNA DERECHA: Technologies (ocupa toda la altura) -->
+  <div class="flex-1 p-6 xl:p-8 h-auto xl:h-[512px] bento">
+    <h2 class="mb-16 font-semibold text-white xl:text-[40px] text-4xl capitalize">
+      technologies
+    </h2>
+    
+    <!-- Grid de iconos de tecnologías -->
+    <div class="gap-4 xl:gap-12 grid grid-cols-3 xl:grid-cols-4">
+      <!-- Fila 1 -->
+      <div class="flex justify-center items-center">
+        <!-- HTML5 -->
+         <HTMLIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- CSS3 -->
+        <CSSIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- Tailwind -->
+        <TailwindIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- JavaScript -->
+        <JavascriptIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+
+      <!-- Fila 2 -->
+      <div class="flex justify-center items-center">
+        <!-- TypeScript -->
+        <TypeScriptIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- React  -->
+        <ReactIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- NextJS -->
+        <NextJSIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- Node.js -->
+        <NodeJSIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+
+      <!-- Fila 3 -->
+      <div class="flex justify-center items-center">
+        <!-- Java -->
+        <JavaIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- Spring Boot -->
+        <SpringBootIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- MySQL -->
+        <MySQLIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+      <div class="flex justify-center items-center">
+        <!-- MongoDB -->
+        <MongoDBIcon className="w-12 lg:w-18 h-12 lg:h-18"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const techSection = document.getElementById("technologies-section");
+    
+    if (techSection) {
+      void techSection.offsetHeight;
+      techSection.classList.add("is-animated");
+    }
+  });
+  
+  // Timer para mostrar hora actual en tiempo real
+  function updateTime() {
+    const timeElement = document.getElementById("current-time");
+    if (!timeElement) return;
+
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    // Actualizar el texto en formato 24 horas
+    timeElement.textContent = `${hours}:${minutes} h`;
+  }
+
+  // Actualizar inmediatamente al cargar
+  updateTime();
+
+  // Actualizar cada minuto (60000 ms)
+  setInterval(updateTime, 60000);
+</script>

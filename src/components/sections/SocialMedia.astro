@@ -1,35 +1,42 @@
 ---
-import { Twitter, Mail, Globe } from "@lucide/astro";
+import GithubIcon from "@/components/ui/icons/GithubIcon.astro";
+import LinkedinIcon from "@/components/ui/icons/LinkedinIcon.astro";
+import TwitterIcon from "@/components/ui/icons/TwitterIcon.astro";
+import EmailIcon from "@/components/ui/icons/EmailIcon.astro";
+import WebsiteIcon from "@/components/ui/icons/WebsiteIcon.astro";
+import Unsplash from "../ui/icons/unsplash.astro";
 ---
 
 <section id="social-media-section" class="flex flex-wrap gap-3 lg:gap-4 mt-5 w-full font-inter">
-  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+  <a href="https://www.linkedin.com/in/adrianfg17/" target="_blank" class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
-      <img src="icons/linkedin.svg" alt="LinkedIn Icon" class="w-6 h-6" />
+      <LinkedinIcon className="w-6 h-6" />
       <span class="text-white text-xl">linkedin</span>
+
     </div>
-  </div>
+  </a>
   <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
-      <img src="icons/github.svg" alt="GitHub Icon" class="w-6 h-6" />
+      <!-- <img src="icons/github.svg" alt="GitHub Icon" class="w-6 h-6" /> -->
+       <GithubIcon className="w-6 h-6"/>
       <span class="text-white text-xl">github</span>
     </div>
   </div>
   <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
-      <Twitter class="w-6 h-6" />
+      <TwitterIcon className="w-6 h-6" />
       <span class="text-white text-xl">twitter</span>
     </div>
   </div>
   <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
-      <Mail class="w-6 h-6" />
-      <span class="text-white text-xl">email</span>
+      <Unsplash className="w-6 h-6" />
+      <span class="text-white text-xl">unsplash</span>
     </div>
   </div>
   <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
-      <Globe class="w-6 h-6" />
+      <WebsiteIcon className="w-6 h-6" />
       <span class="text-white text-xl">website</span>
     </div>  
   </div>
@@ -42,4 +49,5 @@ import { Twitter, Mail, Globe } from "@lucide/astro";
     void nav.offsetHeight;
     nav.classList.add("is-animated");
   });
+</script>
 </script>

@@ -1,0 +1,208 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+// Obtener proyectos profesionales ordenados
+const works = (await getCollection('works'))
+  .filter((work: CollectionEntry<'works'>) => work.data.featured)
+  .sort((a: CollectionEntry<'works'>, b: CollectionEntry<'works'>) => a.data.order - b.data.order);
+---
+
+<section id="works-section" class="mt-5 w-full fade-up">
+  <!-- Título de la sección -->
+  <div class="mb-5 p-6 xl:p-8 h-auto xl:h-[125px] bento">
+    <h2 class="font-bold text-orange xl:text-[48px] text-4xl">
+      Professional Projects
+    </h2>
+  </div>
+
+  <!-- Contenedor del carrusel de proyectos -->
+  <div class="relative p-6 xl:p-8 h-auto xl:min-h-[707px] overflow-hidden bento">
+    <!-- Proyectos (solo uno visible a la vez) -->
+    {works.map((work: CollectionEntry<'works'>, workIndex: number) => (
+      <div 
+        class="transition-opacity duration-500 work-item"
+        data-work-index={workIndex}
+        style={workIndex === 0 ? 'opacity: 1;' : 'opacity: 0; position: absolute; inset: 0; pointer-events: none;'}
+      >
+        <!-- Título y descripción -->
+        <h3 class="mb-4 font-bold text-white xl:text-[48px] text-3xl md:text-4xl">
+          {work.data.title}
+        </h3>
+        <p class="mb-8 text-gray-400 xl:text-[20px] text-lg md:text-xl">
+          {work.data.description}
+        </p>
+
+        <!-- Carrusel de imágenes del proyecto -->
+        <div class="relative mb-8 rounded-[20px] h-[300px] xl:h-[506px] overflow-hidden image-carousel-container">
+          {work.data.images.map((img: string, imgIndex: number) => (
+            <img
+              src={img}
+              alt={`${work.data.title} - imagen ${imgIndex + 1}`}
+              class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 carousel-image"
+              data-work-index={workIndex}
+              data-img-index={imgIndex}
+              style={imgIndex === 0 ? 'opacity: 1;' : 'opacity: 0;'}
+            />
+          ))}
+          
+          <!-- Indicadores de imagen (círculos) -->
+          {work.data.images.length > 1 && (
+            <div class="bottom-4 left-1/2 z-10 absolute flex gap-3 -translate-x-1/2 transform">
+              {work.data.images.map((_: string, imgIndex: number) => (
+                <button
+                  class="border-2 rounded-full w-[18px] h-[18px] transition-all duration-300 image-indicator"
+                  data-work-index={workIndex}
+                  data-img-index={imgIndex}
+                  style={imgIndex === 0 ? 'background-color: #c85400; border-color: #c85400;' : 'background-color: transparent; border-color: #8a8a93;'}
+                  aria-label={`Ver imagen ${imgIndex + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Botón ver más -->
+        <a 
+          href={`/works/${work.slug}`}
+          class="inline-block bg-orange hover:bg-orange/80 mt-6 px-8 py-4 rounded-full font-bold text-white xl:text-[20px] transition-colors"
+        >
+          Ver proyecto completo →
+        </a>
+      </div>
+    ))}
+
+    <!-- Navegación entre proyectos -->
+    {works.length > 1 && (
+      <div class="top-8 right-8 z-20 absolute flex gap-4">
+        <button 
+          id="prev-work" 
+          class="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700 rounded-full w-12 xl:w-14 h-12 xl:h-14 text-white transition-colors"
+          aria-label="Proyecto anterior"
+        >
+          ←
+        </button>
+        <button 
+          id="next-work" 
+          class="flex justify-center items-center bg-gray-800/50 hover:bg-gray-700 rounded-full w-12 xl:w-14 h-12 xl:h-14 text-white transition-colors"
+          aria-label="Siguiente proyecto"
+        >
+          →
+        </button>
+      </div>
+    )}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let currentWorkIndex = 0;
+    let currentImageIndexes: number[] = [];
+
+    const workItems = document.querySelectorAll('.work-item');
+    const totalWorks = workItems.length;
+
+    // Inicializar array de índices de imágenes
+    workItems.forEach(() => currentImageIndexes.push(0));
+
+    /**
+     * Actualiza los indicadores de imagen para un proyecto específico
+     */
+    function updateImageIndicators(workIndex: number, imageIndex: number) {
+      const indicators = document.querySelectorAll(
+        `.image-indicator[data-work-index="${workIndex}"]`
+      );
+      
+      indicators.forEach((indicator, i) => {
+        const btn = indicator as HTMLButtonElement;
+        if (i === imageIndex) {
+          // Indicador activo: filled con color naranja
+          btn.style.backgroundColor = '#c85400';
+          btn.style.borderColor = '#c85400';
+        } else {
+          // Indicador inactivo: outlined con gris
+          btn.style.backgroundColor = 'transparent';
+          btn.style.borderColor = '#8a8a93';
+        }
+      });
+    }
+
+    /**
+     * Muestra una imagen específica del carrusel
+     */
+    function showImage(workIndex: number, imageIndex: number) {
+      const images = document.querySelectorAll(
+        `.carousel-image[data-work-index="${workIndex}"]`
+      );
+      
+      images.forEach((img, i) => {
+        const imgElement = img as HTMLImageElement;
+        imgElement.style.opacity = i === imageIndex ? '1' : '0';
+      });
+      
+      currentImageIndexes[workIndex] = imageIndex;
+      updateImageIndicators(workIndex, imageIndex);
+    }
+
+    /**
+     * Cambia al proyecto especificado
+     */
+    function showWork(index: number) {
+      workItems.forEach((work, i) => {
+        const workElement = work as HTMLElement;
+        if (i === index) {
+          workElement.style.opacity = '1';
+          workElement.style.position = 'relative';
+          workElement.style.pointerEvents = 'auto';
+        } else {
+          workElement.style.opacity = '0';
+          workElement.style.position = 'absolute';
+          workElement.style.inset = '0';
+          workElement.style.pointerEvents = 'none';
+        }
+      });
+      
+      currentWorkIndex = index;
+      
+      // Resetear al primera imagen del nuevo proyecto
+      showImage(index, currentImageIndexes[index]);
+    }
+
+    // Event listeners para indicadores de imágenes
+    document.querySelectorAll('.image-indicator').forEach(indicator => {
+      indicator.addEventListener('click', (e) => {
+        const btn = e.target as HTMLButtonElement;
+        const imgIndex = parseInt(btn.dataset.imgIndex || '0');
+        const workIndex = parseInt(btn.dataset.workIndex || '0');
+        
+        if (workIndex === currentWorkIndex) {
+          showImage(workIndex, imgIndex);
+        }
+      });
+    });
+
+    // Navegación entre proyectos - Anterior
+    document.getElementById('prev-work')?.addEventListener('click', () => {
+      const newIndex = (currentWorkIndex - 1 + totalWorks) % totalWorks;
+      showWork(newIndex);
+    });
+
+    // Navegación entre proyectos - Siguiente
+    document.getElementById('next-work')?.addEventListener('click', () => {
+      const newIndex = (currentWorkIndex + 1) % totalWorks;
+      showWork(newIndex);
+    });
+
+    // Animación fade-up al cargar
+    const worksSection = document.getElementById('works-section');
+    if (worksSection) {
+      void worksSection.offsetHeight;
+      worksSection.classList.add('is-animated');
+    }
+
+    // Inicializar indicadores del primer proyecto
+    if (totalWorks > 0) {
+      updateImageIndicators(0, 0);
+    }
+  });
+</script>

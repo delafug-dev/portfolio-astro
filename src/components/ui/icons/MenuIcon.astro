@@ -1,0 +1,16 @@
+---
+import ThemableIcon from "./ThemableIcon.astro";
+
+interface Props {
+  className?: string;
+  id?: string;
+}
+
+const { className, id } = Astro.props;
+---
+
+<ThemableIcon
+  id={id}
+  className={className}
+  path={["M3 12h18", "M3 6h18", "M3 18h18"]}
+/>

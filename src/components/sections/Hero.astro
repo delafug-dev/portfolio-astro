@@ -1,6 +1,7 @@
 ---
 import Button from "@/components/ui/Button.astro";
-import { Sun, Moon } from "@lucide/astro";
+import SunIcon from "@/components/ui/icons/SunIcon.astro";
+import MoonIcon from "@/components/ui/icons/MoonIcon.astro";
 ---
 
 <section id="hero-section" class="flex xl:flex-row flex-col gap-3 xl:gap-5 mt-5 w-full fade-up">
@@ -30,12 +31,8 @@ import { Sun, Moon } from "@lucide/astro";
       class="flex flex-col gap-5 col-span-1 p-5 cursor-pointer bento"
     >
       <div id="theme-icon" class="relative w-[42px] h-[42px]">
-        <Sun id="sun-icon" class="absolute inset-0 theme-icon-sun" size={42} />
-        <Moon
-          id="moon-icon"
-          class="absolute inset-0 theme-icon-moon"
-          size={42}
-        />
+        <SunIcon id="sun-icon" className="absolute inset-0 w-[42px] h-[42px] theme-icon-sun" />
+        <MoonIcon id="moon-icon" className="absolute inset-0 w-[42px] h-[42px] theme-icon-moon" />
       </div>
       <p class="text-md text-text xl:text-xl">
         <span id="theme-text-dark" class="theme-text-dark"

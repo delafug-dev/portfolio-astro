@@ -1,0 +1,33 @@
+---
+interface Props {
+  path: string | string[];
+  className?: string;
+  id?: string;
+  viewBox?: string;
+}
+
+const { path, className = "", id, viewBox = "0 0 24 24" } = Astro.props;
+const paths = Array.isArray(path) ? path : [path];
+---
+
+<svg
+  id={id}
+  xmlns="http://www.w3.org/2000/svg"
+  class={`themable-icon ${className}`}
+  viewBox={viewBox}
+  fill="currentColor"
+  stroke="none"
+>
+  {paths.map((p) => <path d={p} fill="currentColor" />)}
+</svg>
+
+<style>
+  .themable-icon {
+    color: #ffffff;
+    transition: color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  :global(body.light) .themable-icon {
+    color: #1a1a1a;
+  }
+</style>
