@@ -1,17 +1,17 @@
 ---
-import HTMLIcon from "../ui/icons/HTMLIcon.astro";
-import CSSIcon from "../ui/icons/CSSIcon.astro";
-import TailwindIcon from "../ui/icons/TailwindIcon.astro";
-import JavascriptIcon from "../ui/icons/JavascriptIcon.astro";
-import TypeScriptIcon from "../ui/icons/TypeScriptIcon.astro";
-import ReactIcon from "../ui/icons/ReactIcon.astro";
-import NextJSIcon from "../ui/icons/NextJSIcon.astro";
-import NodeJSIcon from "../ui/icons/NodeJSIcon.astro";
-import JavaIcon from "../ui/icons/JavaIcon.astro";
-import SpringBootIcon from "../ui/icons/SpringBootIcon.astro";
-import MySQLIcon from "../ui/icons/MySQLIcon.astro";
-import MongoDBIcon from "../ui/icons/MongoDBIcon.astro";
-import { getWeatherIcon, defaultWeatherData } from "../../utils/weatherIcons";
+import HTMLIcon from "@/components/ui/icons/technologies/HTMLIcon.astro";
+import CSSIcon from "@/components/ui/icons/technologies/CSSIcon.astro";
+import TailwindIcon from "@/components/ui/icons/technologies/TailwindIcon.astro";
+import JavascriptIcon from "@/components/ui/icons/technologies/JavascriptIcon.astro";
+import TypeScriptIcon from "@/components/ui/icons/technologies/TypeScriptIcon.astro";
+import ReactIcon from "@/components/ui/icons/technologies/ReactIcon.astro";
+import NextJSIcon from "@/components/ui/icons/technologies/NextJSIcon.astro";
+import NodeJSIcon from "@/components/ui/icons/technologies/NodeJSIcon.astro";
+import JavaIcon from "@/components/ui/icons/technologies/JavaIcon.astro";
+import SpringBootIcon from "@/components/ui/icons/technologies/SpringBootIcon.astro";
+import MySQLIcon from "@/components/ui/icons/technologies/MySQLIcon.astro";
+import MongoDBIcon from "@/components/ui/icons/technologies/MongoDBIcon.astro";
+import { getWeatherIcon, defaultWeatherData } from "@/utils/weatherIcons";
 
 // Fetch del clima en el servidor
 const WEATHER_API_KEY = import.meta.env.WEATHER_API_KEY;
@@ -56,9 +56,9 @@ try {
       
       <div class="flex justify-between items-center">
         <div>
-          <p class="mb-2 font-bold text-orange xl:text-[40px] text-4xl">{weatherData.temp_c}º</p>
+          <p class="mb-2 font-bold text-orange xl:text-[40px] text-4xl">{weatherData.temp_c.toFixed(0)}º</p>
           <p class="font-semibold text-white xl:text-[24px] text-2xl">{weatherIcon.name}</p>
-          <p id="current-time" class="font-montserrat font-normal text-white xl:text-[20px] text-xl tracking-wide">--:--</p>
+          <p id="current-time" class="font-montserrat font-normal text-white xl:text-[20px] text-xl tracking-widest">--:--</p>
         </div>
         <!-- Icono del clima desde Meteocons -->
         <div class="flex justify-center items-center w-32 xl:w-[184px] h-32 xl:h-[129px]">
@@ -72,12 +72,12 @@ try {
     </div>
 
     <!-- Frase de Tolkien -->
-    <div class="flex flex-col justify-center p-6 xl:p-8 h-auto xl:h-[168px] bento">
-      <p class="mb-4 text-white xl:text-[20px] text-xl leading-relaxed">
+    <div class="flex flex-col flex-1 justify-center p-6 xl:p-8 h-auto xl:h-[168px] bento">
+      <p class="mb-4 text-white text-xl xl:text-xl leading-relaxed">
         "All we have to decide is what to do with the time that is given to us."
       </p>
       <ul class="list-none">
-        <li class="font-semibold text-white xl:text-[20px] text-xl">
+        <li class="font-family-montserrat font-semibold text-white text-sm tracking-widest">
           • J. R.R. Tolkien
         </li>
       </ul>
@@ -86,7 +86,7 @@ try {
 
   <!-- COLUMNA DERECHA: Technologies (ocupa toda la altura) -->
   <div class="flex-1 p-6 xl:p-8 h-auto xl:h-[512px] bento">
-    <h2 class="mb-16 font-semibold text-white xl:text-[40px] text-4xl capitalize">
+    <h2 class="mb-16 font-bold text-white text-2xl xl:text-4xl capitalize">
       technologies
     </h2>
     

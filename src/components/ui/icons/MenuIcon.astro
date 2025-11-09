@@ -1,5 +1,5 @@
 ---
-import ThemableIcon from "./ThemableIcon.astro";
+import ThemableIcon from "@/components/ui/icons/ThemableIcon.astro";
 
 interface Props {
   className?: string;
@@ -12,5 +12,5 @@ const { className, id } = Astro.props;
 <ThemableIcon
   id={id}
   className={className}
-  path={["M3 12h18", "M3 6h18", "M3 18h18"]}
+  path="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"
 />

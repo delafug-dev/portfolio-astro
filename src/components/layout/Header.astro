@@ -29,9 +29,9 @@ import MenuIcon from "@/components/ui/icons/MenuIcon.astro";
       </li>
       <li>
         <a
-          href=""
+          href="#works-section"
           class="ml-2 font-bold text-gray-400 hover:text-white md:text-6xl text-7xl tracking-[-0.01rem] transition-colors duration-300"
-          >Projects.</a
+          >Works.</a
         >
       </li>
       <li>
@@ -48,7 +48,7 @@ import MenuIcon from "@/components/ui/icons/MenuIcon.astro";
 <header>
   <nav
     id="header-nav"
-    class="flex flex-row justify-between items-center xl:mx-auto mt-6 max-w-full font-semibold fade-up bentoHeaderFooter"
+    class="flex flex-row justify-between items-center xl:mx-auto max-w-full font-semibold fade-up bentoHeaderFooter"
   >
     <span class="m-0 py-5 pl-[42px] font-medium text-white tracking-[-0.01rem]"
       >devlafug.</span
@@ -61,14 +61,14 @@ import MenuIcon from "@/components/ui/icons/MenuIcon.astro";
       </li>
       <li>
         <a
-          href=""
+          href="#works-section"
           class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300"
-          >projects.</a
+          >works.</a
         >
       </li>
       <li>
         <a
-          href=""
+          href="#project"
           class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300"
           >contact.</a
         >
@@ -87,28 +87,55 @@ import MenuIcon from "@/components/ui/icons/MenuIcon.astro";
     void nav.offsetHeight;
     nav.classList.add("is-animated");
   });
+  
   const toggleButton = document.getElementById("toggle_button");
   const toggleButtonMenu = document.getElementById("toggle_button_menu");
   const overlay = document.getElementById("overlay");
+  
+  // Función para cerrar el overlay
+  function closeOverlay() {
+    if (overlay) {
+      overlay.style.display = "none";
+      // Restaurar scroll
+      document.body.style.overflow = "";
+    }
+  }
+  
+  // Función para abrir el overlay
+  function openOverlay() {
+    if (overlay) {
+      overlay.style.display = "flex";
+      overlay.style.flexDirection = "column";
+      // Bloquear scroll
+      document.body.style.overflow = "hidden";
+    }
+  }
+  
+  // Toggle para abrir overlay
   if (toggleButton && overlay) {
     toggleButton.addEventListener("click", () => {
       if (overlay.style.display === "flex") {
-        overlay.style.display = "none";
+        closeOverlay();
       } else {
-        overlay.style.display = "flex";
-        overlay.style.flexDirection = "column";
+        openOverlay();
       }
     });
   }
+  
+  // Toggle para cerrar overlay (botón X)
   if (toggleButtonMenu && overlay) {
     toggleButtonMenu.addEventListener("click", () => {
-      if (overlay.style.display === "flex") {
-        overlay.style.display = "none";
-      } else {
-        overlay.style.display = "flex";
-        overlay.style.flexDirection = "column";
-        overlay.style.alignItems = "center";
-      }
+      closeOverlay();
+    });
+  }
+  
+  // Cerrar overlay al hacer click en cualquier link del menú móvil
+  if (overlay) {
+    const menuLinks = overlay.querySelectorAll("a");
+    menuLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        closeOverlay();
+      });
     });
   }
 </script>

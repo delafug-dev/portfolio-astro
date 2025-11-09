@@ -15,7 +15,7 @@ order: 1
 testimonial:
   quote: "Adrián de la Fuente demonstrated exceptional professionalism by understanding and exceeding our expectations in the design of the website for our wellness clinic."
   author: "Patricia"
-  avatar: "/testimonials/patricia.jpg"
+  avatar: "/testimonials/patricia.png"
 ---
 
 # EMESE Patricia - Proyecto Completo

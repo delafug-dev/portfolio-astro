@@ -10,14 +10,14 @@ const worksWithTestimonials = (await getCollection('works'))
 
 <section id="testimonials-section" class="mt-5 w-full fade-up">
   <!-- Título de la sección -->
-  <div class="mb-5 p-6 xl:p-8 h-auto xl:h-[125px] bento">
-    <h2 class="font-bold text-orange xl:text-[48px] text-4xl">
+  <div class="flex items-center mb-5 p-6 xl:p-8 h-auto xl:h-[100px] bento">
+    <h2 class="font-bold text-orange text-2xl xl:text-4xl">
       Testimonials
     </h2>
   </div>
 
   <!-- Contenedor del carrusel de testimoniales -->
-  <div class="relative flex items-center p-8 xl:p-12 h-auto xl:h-[251px] bento">
+  <div class="relative flex items-center p-6 xl:p-8 h-auto bento">
     <!-- Testimoniales (solo uno visible a la vez) -->
     {worksWithTestimonials.map((work: CollectionEntry<'works'>, index: number) => (
       <div 

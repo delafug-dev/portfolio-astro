@@ -1,14 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import HTMLIcon from "../ui/icons/HTMLIcon.astro";
-import CSSIcon from "../ui/icons/CSSIcon.astro";
-import TailwindIcon from "../ui/icons/TailwindIcon.astro";
-import JavascriptIcon from "../ui/icons/JavascriptIcon.astro";
-import TypeScriptIcon from "../ui/icons/TypeScriptIcon.astro";
-import ReactIcon from "../ui/icons/ReactIcon.astro";
-import NextJSIcon from "../ui/icons/NextJSIcon.astro";
-import NodeJSIcon from "../ui/icons/NodeJSIcon.astro";
+import HTMLIcon from "@/components/ui/icons/technologies/HTMLIcon.astro";
+import CSSIcon from "@/components/ui/icons/technologies/CSSIcon.astro";
+import TailwindIcon from "@/components/ui/icons/technologies/TailwindIcon.astro";
+import JavascriptIcon from "@/components/ui/icons/technologies/JavascriptIcon.astro";
+import TypeScriptIcon from "@/components/ui/icons/technologies/TypeScriptIcon.astro";
+import ReactIcon from "@/components/ui/icons/technologies/ReactIcon.astro";
+import NextJSIcon from "@/components/ui/icons/technologies/NextJSIcon.astro";
+import NodeJSIcon from "@/components/ui/icons/technologies/NodeJSIcon.astro";
 
 // Obtener proyectos personales ordenados
 const projects = (await getCollection('projects'))
@@ -30,8 +30,8 @@ const techIcons: Record<string, any> = {
 
 <section id="projects-section" class="mt-5 w-full fade-up">
   <!-- Título de la sección -->
-  <div class="mb-5 p-6 xl:p-8 h-auto xl:h-[125px] bento">
-    <h2 class="font-bold text-orange xl:text-[48px] text-4xl">
+  <div class="flex items-center mb-5 p-6 xl:p-8 h-auto xl:h-[100px] bento">
+    <h2 class="font-bold text-orange text-2xl xl:text-4xl">
       Personal Projects
     </h2>
   </div>
@@ -42,7 +42,7 @@ const techIcons: Record<string, any> = {
       <div class="flex xl:flex-row flex-col gap-5 h-auto xl:h-[422px] overflow-hidden bento">
         <!-- Columna izquierda: Info e imagen -->
         <div class="flex-1 p-6 xl:p-8">
-          <h3 class="mb-2 font-bold text-white xl:text-[32px] text-2xl md:text-3xl">
+          <h3 class="mb-2 font-bold text-white text-2xl xl:text-4xl">
             {project.data.title}
           </h3>
           <p class="mb-8 text-gray-400 xl:text-[20px] text-lg md:text-xl">
