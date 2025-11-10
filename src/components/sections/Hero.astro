@@ -21,11 +21,15 @@ import MoonIcon from "@/components/ui/icons/MoonIcon.astro";
   <div
     class="flex-1 gap-3 xl:gap-5 grid grid-cols-2 grid-rows-2 xl:grid-rows-3"
   >
-    <div
+    <a
+      href="/cv/Adrian_de_la_Fuente_CV.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="pointer-events: auto !important; position: relative; z-index: 10;"
       class="flex justify-center items-center col-span-1 font-bold text-orange xl:text-[48px] text-3xl text-center leading-tight xl:leading-[50px] cursor-pointer bento"
     >
       GET <br />CV
-    </div>
+    </a>
     <div
       id="theme-toggle-tile"
       class="flex flex-col justify-between gap-5 col-span-1 p-5 cursor-pointer bento"
@@ -47,7 +51,7 @@ import MoonIcon from "@/components/ui/icons/MoonIcon.astro";
       class="flex flex-col justify-center items-center gap-6 xl:gap-10 col-span-2 row-span-1 xl:row-span-2 p-4 bento"
     >
       <p
-        class="font-family-montserrat font-bold text-text text-4xl xl:text-5xl text-center"
+        class="font-family-inter font-bold text-text text-4xl xl:text-5xl text-center"
       >
         Have a project in mind ?
       </p>
@@ -60,21 +64,21 @@ import MoonIcon from "@/components/ui/icons/MoonIcon.astro";
   </div>
 </section>
 
-<script>
-    window.addEventListener("DOMContentLoaded", () => {
-    const nav = document.getElementById("hero-section");
-    if (!nav) return;
-    void nav.offsetHeight;
-    nav.classList.add("is-animated");
-  });
+<script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
+    // Animación del hero
+    const nav = document.getElementById("hero-section");
+    if (nav) {
+      void nav.offsetHeight;
+      nav.classList.add("is-animated");
+    }
+    
+    // Toggle de tema
     const toggleTile = document.getElementById("theme-toggle-tile");
-
-    toggleTile?.addEventListener("click", () => {
-      // Usar el themeManager global para cambiar el tema
-      // @ts-ignore - themeManager se define en Layout.astro
-      window.themeManager?.toggle();
-      // No necesitamos actualizar UI manualmente, CSS lo hace automáticamente
-    });
+    if (toggleTile) {
+      toggleTile.addEventListener("click", () => {
+        window.themeManager?.toggle();
+      });
+    }
   });
 </script>
