@@ -134,4 +134,4 @@ Este proyecto me enseñó:
 
 **Duración del proyecto**: 9 semanas  
 **Rol**: Fullstack Developer & Designer  
-**Cliente**: Mullen Peluqueros, Sevilla
+**Cliente**: EMESE Patricia, Villanueva del Ariscal, Sevilla
