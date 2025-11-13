@@ -99,29 +99,42 @@ html {
 body {
   background-color: var(--color-background);
   font-family: var(--font-family-inter);
-  cursor: none; /* Ocultar cursor nativo */
+}
+
+/* Ocultar cursor nativo solo en desktop */
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
 }
 
 body.light {
   background-color: var(--color-light-background);
 }
 
-/* Cursor personalizado - Modo oscuro */
+/* Cursor personalizado - Solo en dispositivos con cursor (desktop) */
 .custom-cursor {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  backdrop-filter: blur(8px);
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  transition: transform 0.12s cubic-bezier(0.25, 0.8, 0.25, 1),
-    background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform, left, top;
+  display: none; /* Oculto por defecto en móviles */
+}
+
+@media (pointer: fine) {
+  .custom-cursor {
+    display: block;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.12s cubic-bezier(0.25, 0.8, 0.25, 1),
+      background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, left, top;
+  }
 }
 
 /* Cursor en modo claro - oscuro para verse bien */
@@ -142,9 +155,11 @@ body.light .custom-cursor {
   border-color: rgba(200, 84, 0, 0.2);
 }
 
-/* Ocultar cursor en todos los elementos */
-* {
-  cursor: none !important;
+/* Ocultar cursor en todos los elementos solo en desktop */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 /* Bento global styles */
