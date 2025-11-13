@@ -28,9 +28,8 @@ EMESE Patricia es un clínica de bienestar y estética avanzada en Sevilla. El o
 
 El cliente necesitaba:
 
-- **Sistema de reservas online** integrado para reducir llamadas telefónicas
+- **Sistema de reservas a través de correo** integrado para reducir llamadas telefónicas
 - **Galería de trabajos** para mostrar el antes/después de los clientes
-- **Presentación del equipo** con perfiles de cada barbero
 - **Diseño responsive** que funcione perfectamente en móviles
 - **Accesibilidad** cumpliendo estándares WCAG 2.1
 - **SEO optimizado** para aparecer en búsquedas locales
@@ -51,26 +50,23 @@ Desarrollé una aplicación web moderna utilizando las siguientes tecnologías:
 
 - **Vercel** para hosting y despliegue continuo
 - **Resend** para envío de emails de confirmación
-- **Google Calendar API** para sincronización de citas
-- **Cloudinary** para optimización automática de imágenes
 
 ## 🎨 Proceso de Diseño
 
 1. **Investigación** (1 semana)
 
    - Análisis de competidores locales e internacionales
-   - Entrevistas con el equipo de Mullen
+   - Reunión con EMESE para entender su visión y necesidades
    - Definición de buyer personas
 
 2. **Wireframing** (1 semana)
 
    - Bocetos iniciales en papel
    - Wireframes de baja fidelidad en Figma
-   - Flujo de usuario para sistema de reservas
 
 3. **Diseño Visual** (2 semanas)
 
-   - Paleta de colores masculina y elegante
+   - Paleta de colores pasteles y elegante
    - Tipografía moderna y legible
    - Sistema de componentes reutilizables
    - Prototipo interactivo en Figma
@@ -84,25 +80,14 @@ Desarrollé una aplicación web moderna utilizando las siguientes tecnologías:
 
 5. **Testing & Launch** (1 semana)
    - Testing de accesibilidad con Axe
-   - Performance optimization (Lighthouse 95+)
    - SEO on-page
    - Deploy a producción
-
-## 📊 Resultados
-
-Después del lanzamiento:
-
-- ✅ **+150% aumento** en reservas online vs. telefónicas
-- ✅ **85% reducción** en tiempo de gestión de citas
-- ✅ **4.8/5 estrellas** en Google Reviews mencionando la web
-- ✅ **#1 en Google** para "peluquería masculina Sevilla"
-- ✅ **Lighthouse Score 95+** en todas las métricas
 
 ## 🔧 Características Técnicas
 
 ### Performance
 
-- Lazy loading de imágenes con Cloudinary
+- Lazy loading de imágenes y componentes
 - Code splitting automático con Next.js
 - Prefetching de rutas críticas
 - Caching estratégico con Vercel Edge Network
@@ -117,7 +102,6 @@ Después del lanzamiento:
 ### SEO
 
 - Meta tags dinámicos por página
-- Open Graph para redes sociales
 - Schema.org markup para rich snippets
 - Sitemap XML automático
 - robots.txt optimizado
@@ -130,11 +114,11 @@ La web incluye:
 - Galería de trabajos con lightbox
 - Formulario de reservas intuitivo
 - Sección de servicios con pricing
-- Footer con mapa de ubicación
+- Mapa de ubicación
 
 ## 🔗 Enlaces
 
-- [Ver sitio en vivo](https://mullenpeluqueros.com) _(ejemplo, reemplazar con URL real)_
+- [Ver sitio en vivo](https://emesebienestar.es/)
 - Código privado (proyecto cliente)
 
 ## 📝 Aprendizajes

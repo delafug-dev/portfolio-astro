@@ -1,42 +1,34 @@
 ---
 import MenuIcon from "@/components/ui/icons/MenuIcon.astro";
+import CloseIcon from "@/components/ui/icons/CloseIcon.astro";
 ---
 
 <div
-  class="hidden top-0 left-0 z-50 fixed bg-background-bento w-screen h-screen"
+  class="hidden top-0 left-0 z-50 fixed bg-background-bento w-screen h-screen overlay-menu"
   id="overlay"
 >
   <button class="top-10 right-2 absolute" id="toggle_button_menu">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="68"
-      height="68"
-      viewBox="0 0 256 256"
-      ><path
-        fill="#ffffff"
-        d="M208 36H48a12 12 0 0 0-12 12v160a12 12 0 0 0 12 12h160a12 12 0 0 0 12-12V48a12 12 0 0 0-12-12Zm4 172a4 4 0 0 1-4 4H48a4 4 0 0 1-4-4V48a4 4 0 0 1 4-4h160a4 4 0 0 1 4 4ZM162.83 98.83L133.66 128l29.17 29.17a4 4 0 0 1-5.66 5.66L128 133.66l-29.17 29.17a4 4 0 0 1-5.66-5.66L122.34 128L93.17 98.83a4 4 0 0 1 5.66-5.66L128 122.34l29.17-29.17a4 4 0 1 1 5.66 5.66Z"
-      ></path></svg
-    >
+    <CloseIcon className="w-[68px] h-[68px]" />
   </button>
   <div>
     <ul class="bottom-40 absolute flex flex-col gap-6">
       <li>
         <a
           href="#works-section"
-          class="ml-2 font-bold text-white md:text-6xl text-7xl tracking-[-0.01rem]"
+            class="ml-2 font-bold text-gray-400 hover:text-white md:text-6xl text-7xl tracking-[-0.01rem] transition-colors duration-300"
           >Works.</a
         >
       </li>
-      <li>
+      <!-- <li>
         <a
           href="#works-section"
           class="ml-2 font-bold text-gray-400 hover:text-white md:text-6xl text-7xl tracking-[-0.01rem] transition-colors duration-300"
           >Projects.</a
         >
-      </li>
+      </li> -->
       <li>
         <a
-          href=""
+          href="mailto:adelafuentegarceso@gmail.com?subject=Project Inquiry&body=Hi! I have a project in mind and would like to discuss it with you."
           class="ml-2 font-bold text-gray-400 hover:text-white md:text-6xl text-7xl tracking-[-0.01rem] transition-colors duration-300"
           >Contact.</a
         >
@@ -57,18 +49,20 @@ import MenuIcon from "@/components/ui/icons/MenuIcon.astro";
       class="hidden box-border lg:flex flex-row justify-between items-center gap-14 m-0 pr-[52px]"
     >
       <li>
-        <a href="#works-section" class="font-medium text-white tracking-[-0.01rem]">works.</a>
+        <a href="#works-section" class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300">
+          works.
+        </a>
       </li>
-      <li>
+      <!-- <li>
         <a
           href="#projects-section"
           class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300"
           >projects.</a
         >
-      </li>
+      </li> -->
       <li>
         <a
-          href="#project"
+          href="mailto:adelafuentegarceso@gmail.com?subject=Project Inquiry&body=Hi! I have a project in mind and would like to discuss it with you."
           class="font-medium text-gray-400 hover:text-white tracking-[-0.01rem] transition-colors duration-300"
           >contact.</a
         >

@@ -8,7 +8,11 @@ const worksWithTestimonials = (await getCollection('works'))
   .sort((a: CollectionEntry<'works'>, b: CollectionEntry<'works'>) => a.data.order - b.data.order);
 ---
 
-<section id="testimonials-section" class="mt-5 w-full fade-up">
+<section
+  id="testimonials-section"
+  class="mt-5 w-full fade-up"
+  style="--fade-delay: 4250ms; --fade-translate-y: -40px; --fade-ease: cubic-bezier(0.7, 0, 0.3, 1);"
+>
   <!-- Título de la sección -->
   <div class="flex items-center mb-5 p-6 xl:p-8 h-auto xl:h-[100px] bento">
     <h2 class="font-bold text-orange text-2xl xl:text-4xl">

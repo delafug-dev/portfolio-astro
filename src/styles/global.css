@@ -118,10 +118,10 @@ body.light {
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: transform 0.15s cubic-bezier(0.25, 0.8, 0.25, 1),
-    background 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  will-change: transform;
+  transition: transform 0.12s cubic-bezier(0.25, 0.8, 0.25, 1),
+    background 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, left, top;
 }
 
 /* Cursor en modo claro - oscuro para verse bien */
@@ -181,6 +181,16 @@ body.light .custom-cursor {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Overlay del menú móvil */
+.overlay-menu {
+  background-color: var(--color-background-bento);
+  transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.light .overlay-menu {
+  background-color: var(--color-light-background-bento);
+}
+
 /* Text colors with transitions */
 .text-text {
   color: var(--color-text);
@@ -213,25 +223,33 @@ body.light .text-gray-400:hover {
   color: var(--color-text-light);
 }
 
+/* Sistema de animaciones reutilizable con CSS variables */
 .fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Solo animar en la primera carga */
+html.first-load .fade-up {
   opacity: 0;
-  transform: translateY(-20px); /* viene desde arriba */
+  transform: translateY(var(--fade-translate-y, -20px));
   will-change: transform, opacity;
 }
 
-/* Valores por defecto: 1500ms y easing linear */
-.fade-up.is-animated {
+/* Valores por defecto personalizables por componente */
+html.first-load .fade-up.is-animated {
   --fade-duration: 1000ms;
   --fade-ease: linear;
-  animation: fade-up var(--fade-duration) var(--fade-ease)
-    var(--fade-delay, 0ms) both;
+  --fade-delay: 0ms;
+  --fade-translate-y: -20px;
+  animation: fade-up var(--fade-duration) var(--fade-ease) var(--fade-delay) both;
   animation-iteration-count: 1;
 }
 
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(var(--fade-translate-y, -20px));
   }
   to {
     opacity: 1;

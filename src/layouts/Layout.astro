@@ -20,6 +20,12 @@ import "../styles/global.css";
     </main>
 
     <script is:inline>
+      // Marcar si es la primera carga de la página
+      if (!sessionStorage.getItem('hasAnimated')) {
+        sessionStorage.setItem('hasAnimated', 'true');
+        document.documentElement.classList.add('first-load');
+      }
+
       // Cursor personalizado
       document.addEventListener("DOMContentLoaded", () => {
         const cursor = document.getElementById("custom-cursor");
@@ -38,7 +44,7 @@ import "../styles/global.css";
 
         // Animación suave del cursor
         function animateCursor() {
-          const speed = 0.15; // Velocidad del seguimiento (0.1 = muy suave, 0.3 = más rápido)
+          const speed = 0.25;
 
           cursorX += (mouseX - cursorX) * speed;
           cursorY += (mouseY - cursorY) * speed;

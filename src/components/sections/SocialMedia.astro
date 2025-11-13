@@ -7,11 +7,15 @@ import WebsiteIcon from "@/components/ui/icons/WebsiteIcon.astro";
 import Unsplash from "../ui/icons/unsplash.astro";
 ---
 
-<section id="social-media-section" class="flex flex-wrap gap-3 lg:gap-4 mt-5 w-full font-inter">
+<section
+  id="social-media-section"
+  class="flex flex-wrap gap-3 lg:gap-4 mt-5 w-full font-inter fade-up"
+  style="--fade-delay: 1700ms; --fade-translate-y: -40px; --fade-ease: cubic-bezier(0.7, 0, 0.3, 1);"
+>
   <a href="https://www.linkedin.com/in/adrianfg17/" target="_blank" class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
       <LinkedinIcon className="w-6 h-6" />
-      <span class="text-white text-xl">linkedin</span>
+      <p class="text-text text-xl">linkedin</p>
 
     </div>
   </a>
@@ -19,26 +23,26 @@ import Unsplash from "../ui/icons/unsplash.astro";
     <div class="flex flex-row items-center gap-2">      
       <!-- <img src="icons/github.svg" alt="GitHub Icon" class="w-6 h-6" /> -->
        <GithubIcon className="w-6 h-6"/>
-      <span class="text-white text-xl">github</span>
+      <p class="text-text text-xl">github</p>
     </div>
   </a>
-  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+  <!-- <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
       <TwitterIcon className="w-6 h-6" />
-      <span class="text-white text-xl">twitter</span>
+      <p class="text-white text-xl">twitter</p>
     </div>
-  </div>
-  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+  </div> -->
+  <a href="https://unsplash.com/es/@adrianfg99" target="_blank" class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
       <Unsplash className="w-6 h-6" />
-      <span class="text-white text-xl">unsplash</span>
+      <p class="text-text text-xl">unsplash</p>
     </div>
-  </div>
-  <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
+  </a>
+  <!-- <div class="flex flex-1 justify-center items-center min-w-[180px] h-16 bentoSocialMedia">
     <div class="flex flex-row items-center gap-2">      
       <WebsiteIcon className="w-6 h-6" />
-      <span class="text-white text-xl">website</span>
-    </div>  
+      <p class="text-white text-xl">website</p>
+    </div>   -->
   </div>
 </section>
 

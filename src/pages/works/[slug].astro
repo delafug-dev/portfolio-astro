@@ -41,7 +41,7 @@ const { Content } = await work.render();
     href="/#works-section"
     class="top-8 left-8 z-50 fixed flex items-center gap-2 px-6 py-3 hover:scale-105 transition-transform bento"
   >
-    <span class="text-white xl:text-[20px]">← Volver</span>
+    <span class="text-text xl:text-[20px]">← Volver</span>
   </a>
 
   <div class="mx-auto mt-20 px-4 xl:px-16 py-8 container">
@@ -53,10 +53,10 @@ const { Content } = await work.render();
         class="absolute inset-0 opacity-30 w-full h-full object-cover"
       />
       <div class="z-10 relative flex flex-col justify-center px-8 xl:px-16 h-full">
-        <h1 class="mb-4 font-bold text-white xl:text-[72px] text-4xl md:text-5xl leading-tight">
+        <h1 class="mb-4 font-bold text-text xl:text-[72px] text-4xl md:text-5xl leading-tight">
           {work.data.title}
         </h1>
-        <p class="max-w-3xl text-white/80 xl:text-[24px] text-lg md:text-xl">
+        <p class="opacity-70 max-w-3xl text-text xl:text-[24px] text-lg md:text-xl">
           {work.data.description}
         </p>
       </div>
@@ -89,7 +89,7 @@ const { Content } = await work.render();
               href={work.data.liveUrl} 
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-orange hover:bg-orange/80 px-8 py-4 rounded-full font-bold text-white xl:text-[20px] text-center transition-colors"
+              class="bg-orange hover:bg-orange/80 px-8 py-4 rounded-full font-bold text-text xl:text-[20px] text-center transition-colors"
             >
               See project site ->
             </a>
@@ -99,7 +99,7 @@ const { Content } = await work.render();
               href={work.data.githubUrl} 
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-full font-bold text-white xl:text-[20px] text-center transition-colors"
+              class="bg-gray-800 hover:bg-gray-700 px-8 py-4 rounded-full font-bold text-text xl:text-[20px] text-center transition-colors"
             >
               💻 Ver código en GitHub
             </a>
@@ -140,7 +140,7 @@ const { Content } = await work.render();
           Client Testimonial
         </h2>
         <blockquote class="pl-6 xl:pl-8 border-orange border-l-4">
-          <p class="mb-6 text-white xl:text-[32px] text-xl md:text-2xl italic leading-relaxed">
+          <p class="mb-6 text-text xl:text-[32px] text-xl md:text-2xl italic leading-relaxed">
             "{work.data.testimonial.quote}"
           </p>
           <div class="flex items-center gap-4">
@@ -163,7 +163,7 @@ const { Content } = await work.render();
     <div class="flex justify-center">
       <a 
         href="/#works-section"
-        class="bg-orange hover:bg-orange/80 px-12 py-6 rounded-full font-bold text-white xl:text-[20px] transition-colors"
+        class="bg-orange hover:bg-orange/80 px-12 py-6 rounded-full font-bold text-text xl:text-[20px] transition-colors"
       >
         ← Ver todos los proyectos
       </a>
@@ -184,71 +184,107 @@ const { Content } = await work.render();
   });
 </script>
 
-<style>
+<style is:global>
   /* Reset y estilos base para el contenido */
   article.project-content {
     color: white;
-    font-size: 1.125rem;
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.7;
   }
-  
-  /* Títulos H1 */
+
+  @media (min-width: 768px) {
+    article.project-content {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* Títulos H1 - Minimalista */
   article.project-content h1 {
-    color: #c85400;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin-top: 6rem;
-    margin-bottom: 3rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 2px solid #c85400;
-    line-height: 1.2;
+    color: white;
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
   }
-  
+
+  @media (min-width: 768px) {
+    article.project-content h1 {
+      font-size: 2rem;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+    }
+  }
+
   article.project-content h1:first-child {
     margin-top: 0;
   }
-  
-  /* Títulos H2 - Secciones principales */
+
+  /* Títulos H2 - Secciones principales, más sutil */
   article.project-content h2 {
-    color: white;
-    font-weight: 700;
-    font-size: 2rem;
-    margin-top: 8rem;
-    margin-bottom: 4rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #c85400 0%, #ff6b1a 100%);
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(200, 84, 0, 0.2);
-    line-height: 1.3;
-  }
-  
-  /* Títulos H3 - Subsecciones */
-  article.project-content h3 {
     color: #c85400;
     font-weight: 600;
     font-size: 1.5rem;
-    margin-top: 5rem;
-    margin-bottom: 2.5rem;
-    padding-left: 1rem;
-    border-left: 4px solid #c85400;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
     line-height: 1.4;
   }
-  
-  /* Títulos H4 */
-  article.project-content h4 {
-    color: white;
+
+  @media (min-width: 768px) {
+    article.project-content h2 {
+      font-size: 1.75rem;
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  /* Títulos H3 - Subsecciones, más sutil */
+  article.project-content h3 {
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
     font-size: 1.25rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 768px) {
+    article.project-content h3 {
+      font-size: 1.375rem;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  /* Títulos H4 */
+  article.project-content h4 {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    font-size: 1.125rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
     line-height: 1.5;
+  }
+
+  @media (min-width: 768px) {
+    article.project-content h4 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
   }
   
   /* Párrafos */
   article.project-content p {
-    line-height: 1.9;
-    margin-bottom: 2.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  @media (min-width: 768px) {
+    article.project-content p {
+      margin-bottom: 1.5rem;
+    }
   }
   
   /* Enlaces */
@@ -265,13 +301,28 @@ const { Content } = await work.render();
   /* Listas */
   article.project-content ul,
   article.project-content ol {
-    margin-bottom: 3.5rem;
-    padding-left: 2rem;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
   }
-  
+
+  @media (min-width: 768px) {
+    article.project-content ul,
+    article.project-content ol {
+      margin-bottom: 2rem;
+      padding-left: 2rem;
+    }
+  }
+
   article.project-content li {
-    margin-bottom: 1.25rem;
-    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  @media (min-width: 768px) {
+    article.project-content li {
+      margin-bottom: 0.75rem;
+    }
   }
   
   article.project-content ul li::marker {
@@ -289,12 +340,12 @@ const { Content } = await work.render();
   article.project-content ol + h3,
   article.project-content ul + h4,
   article.project-content ol + h4 {
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
-  
+
   article.project-content ul + p,
   article.project-content ol + p {
-    margin-top: 3rem;
+    margin-top: 1rem;
   }
   
   /* Código */
@@ -380,50 +431,92 @@ const { Content } = await work.render();
   body.light article.project-content {
     color: #1a1a1a;
   }
-  
+
   body.light article.project-content h1 {
-    color: #c85400;
-  }
-  
-  body.light article.project-content h2 {
-    color: white;
-  }
-  
-  body.light article.project-content h3 {
-    color: #c85400;
-  }
-  
-  body.light article.project-content h4 {
     color: #1a1a1a;
   }
-  
+
+  body.light article.project-content h2 {
+    color: #c85400;
+  }
+
+  body.light article.project-content h3 {
+    color: #1a1a1a;
+  }
+
+  body.light article.project-content h4 {
+    color: #4b5563;
+  }
+
   body.light article.project-content p {
     color: #4b5563;
   }
-  
-  body.light article.project-content code {
-    background-color: #f5f5f5;
+
+  body.light article.project-content li {
+    color: #4b5563;
+  }
+
+  body.light article.project-content ul li::marker,
+  body.light article.project-content ol li::marker {
     color: #c85400;
   }
-  
-  body.light article.project-content pre {
-    background-color: #f5f5f5;
+
+  body.light article.project-content a {
+    color: #c85400;
   }
-  
+
+  body.light article.project-content a:hover {
+    color: #ff6b1a;
+  }
+
+  body.light article.project-content code {
+    background-color: #f3f4f6;
+    color: #c85400;
+    border-color: rgba(200, 84, 0, 0.2);
+  }
+
+  body.light article.project-content pre {
+    background-color: #f3f4f6;
+    border-color: rgba(200, 84, 0, 0.15);
+  }
+
   body.light article.project-content pre code {
     color: #1a1a1a;
   }
-  
+
   body.light article.project-content blockquote {
     background-color: rgba(200, 84, 0, 0.05);
     color: #4b5563;
+    border-color: #c85400;
   }
-  
+
+  body.light article.project-content table {
+    border-color: rgba(200, 84, 0, 0.2);
+  }
+
+  body.light article.project-content th {
+    background-color: #c85400;
+    color: white;
+  }
+
+  body.light article.project-content td {
+    border-color: rgba(200, 84, 0, 0.15);
+    color: #4b5563;
+  }
+
+  body.light article.project-content tr:hover {
+    background-color: rgba(200, 84, 0, 0.03);
+  }
+
   body.light article.project-content strong {
     color: #c85400;
   }
-  
+
   body.light article.project-content em {
     color: #6b7280;
+  }
+
+  body.light article.project-content hr {
+    background: linear-gradient(90deg, transparent, rgba(200, 84, 0, 0.3), transparent);
   }
 </style>
