@@ -5,6 +5,8 @@ import Layout from '@/layouts/Layout.astro';
 import SunIcon from "@/components/ui/icons/SunIcon.astro";
 import MoonIcon from "@/components/ui/icons/MoonIcon.astro";
 
+export const prerender = true;
+
 // getStaticPaths es obligatorio para rutas dinámicas
 export async function getStaticPaths() {
   const works = await getCollection('works');
